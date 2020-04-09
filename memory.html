@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="memory.css"></link>
+  <script src="memory.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="heading">
+<h1 >  MEMORY GAME </h1>
+</div>
+<div class="glow">
+  <span id="timer"></span>
+</div>
+<script type="text/javascript">
+		document.getElementById('timer').innerHTML =
+  001 + ":" + 00;
+startTimer();
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var min = timeArray[0];
+  var sec = checkSecond((timeArray[1] - 1));
+  if(sec==59){min=min-1}
+
+  document.getElementById('timer').innerHTML =
+    min + ":" + sec;
+  console.log(min)
+
+  if(min==0&&sec==0)
+  {
+  	alert('Time has finished')
+    location.reload()
+  }
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(second) {
+  if (second < 10 && second >= 0) {second = "0" + second};
+  if (second < 0) {second = "59"};
+  return second;
+}
+</script>
+ <h3>Score:<span id="result"></span></h3>
+
+  <div class="grid">
+  </div>
+
+</body>
+</html>
